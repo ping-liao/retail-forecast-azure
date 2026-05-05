@@ -51,3 +51,7 @@ rsconnect/
 # Local secrets
 .env
 .Renviron
+
+# Azure ML editor sync artifacts
+*.amltmp
+.amlignore

@@ -31,7 +31,7 @@ Built in the open as a learning project. See commit history for progression.
 - [x] Cloud dev environment (Azure ML Compute Instance)
 - [x] Repo scaffold
 - [ ] Data ingestion to Blob
-- [ ] Feature engineering pipeline
+- [x] Feature engineering pipeline
 - [ ] Baseline forecast model
 - [ ] Azure ML training job
 - [ ] Shiny dashboard skeleton

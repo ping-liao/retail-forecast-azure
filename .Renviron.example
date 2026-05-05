@@ -1,0 +1,5 @@
+# Copy this to .Renviron and fill in the values for your Azure resources.
+# The real .Renviron is gitignored.
+AZURE_STORAGE_ACCOUNT=
+AZURE_STORAGE_CONTAINER=retail-data
+R_LIBS_USER=~/cloudfiles/code/Users/pliao/.R-library
