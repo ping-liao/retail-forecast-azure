@@ -55,3 +55,6 @@ rsconnect/
 # Azure ML editor sync artifacts
 *.amltmp
 .amlignore
+
+# Trained model artifacts (large, reproducible)
+artifacts/
