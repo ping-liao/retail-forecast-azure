@@ -1,0 +1,101 @@
+Downloading curated/daily_revenue_by_country.parquet ...
+Alive[################################################################]  100.0000%Finished[#############################################################]  100.0000%
+Loaded 2,414 rows across 6 series
+
+== ALL_COUNTRIES (604 rows) ==
+frequency = 7 observations per 1 week
+ℹ We have detected a possible intermittent series, you can change the default metric set to the extended_forecast_accuracy_metric_set() containing the MAAPE metric, which is more appropriate for this type of series.
+# A tibble: 2 × 10
+  country      .model_id .model_desc .type    mae  mape  mase smape   rmse   rsq
+  <chr>            <int> <chr>       <chr>  <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl>
+1 ALL_COUNTRI…         1 ARIMA(0,0,… Test  19636.   Inf 0.670  63.1 32688. 0.451
+2 ALL_COUNTRI…         2 XGBOOST     Test  17521.   Inf 0.597  54.2 27904. 0.470
+Winner: XGBOOST (model_id=2)
+
+== EIRE (331 rows) ==
+frequency = 7 observations per 1 week
+ℹ We have detected a possible intermittent series, you can change the default metric set to the extended_forecast_accuracy_metric_set() containing the MAAPE metric, which is more appropriate for this type of series.
+# A tibble: 2 × 10
+  country .model_id .model_desc      .type   mae  mape  mase smape  rmse     rsq
+  <chr>       <int> <chr>            <chr> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
+1 EIRE            1 ARIMA(0,0,0) WI… Test   864.   Inf 0.724  110. 1203. NA     
+2 EIRE            2 XGBOOST          Test  1024.   Inf 0.858  138. 1493.  0.0265
+Winner: ARIMA(0,0,0) WITH NON-ZERO MEAN (model_id=1)
+frequency = 7 observations per 1 week
+
+== France (334 rows) ==
+frequency = 7 observations per 1 week
+ℹ We have detected a possible intermittent series, you can change the default metric set to the extended_forecast_accuracy_metric_set() containing the MAAPE metric, which is more appropriate for this type of series.
+# A tibble: 2 × 10
+  country .model_id .model_desc  .type   mae  mape  mase smape  rmse     rsq
+  <chr>       <int> <chr>        <chr> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
+1 France          1 ARIMA(1,1,1) Test   695.   Inf 0.791  89.0  871. 0.0380 
+2 France          2 XGBOOST      Test  1969.   Inf 2.24  113.  3434. 0.00249
+Winner: ARIMA(1,1,1) (model_id=1)
+frequency = 7 observations per 1 week
+
+== Germany (385 rows) ==
+frequency = 7 observations per 1 week
+ℹ We have detected a possible intermittent series, you can change the default metric set to the extended_forecast_accuracy_metric_set() containing the MAAPE metric, which is more appropriate for this type of series.
+# A tibble: 2 × 10
+  country .model_id .model_desc      .type   mae  mape  mase smape  rmse     rsq
+  <chr>       <int> <chr>            <chr> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
+1 Germany         1 ARIMA(0,0,1)(2,… Test   754.   Inf 0.803  113. 1135. 9.85e-4
+2 Germany         2 XGBOOST          Test   957.   Inf 1.02   107. 1295. 5.38e-2
+Winner: ARIMA(0,0,1)(2,0,0)[7] WITH NON-ZERO MEAN (model_id=1)
+frequency = 7 observations per 1 week
+
+== Netherlands (156 rows) ==
+frequency = 7 observations per 1 week
+ℹ We have detected a possible intermittent series, you can change the default metric set to the extended_forecast_accuracy_metric_set() containing the MAAPE metric, which is more appropriate for this type of series.
+# A tibble: 2 × 10
+  country     .model_id .model_desc .type   mae  mape  mase smape  rmse      rsq
+  <chr>           <int> <chr>       <chr> <dbl> <dbl> <dbl> <dbl> <dbl>    <dbl>
+1 Netherlands         1 ARIMA(0,0,… Test  1418.   Inf 0.798  183. 2752. NA      
+2 Netherlands         2 XGBOOST     Test  2390.   Inf 1.35   189. 4273.  0.00947
+Winner: ARIMA(0,0,0) WITH NON-ZERO MEAN (model_id=1)
+frequency = 7 observations per 1 week
+
+== United Kingdom (604 rows) ==
+frequency = 7 observations per 1 week
+ℹ We have detected a possible intermittent series, you can change the default metric set to the extended_forecast_accuracy_metric_set() containing the MAAPE metric, which is more appropriate for this type of series.
+# A tibble: 2 × 10
+  country      .model_id .model_desc .type    mae  mape  mase smape   rmse   rsq
+  <chr>            <int> <chr>       <chr>  <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl>
+1 United King…         1 ARIMA(1,0,… Test  27364.   Inf 0.994  81.9 38483. 0.285
+2 United King…         2 XGBOOST     Test  16238.   Inf 0.590  53.6 28998. 0.383
+Winner: XGBOOST (model_id=2)
+Warning messages:
+1: There was 1 warning in `dplyr::mutate()`.
+ℹ In argument: `.nested.col = purrr::map(...)`.
+Caused by warning:
+! A correlation computation is required, but `estimate` is constant and has 0
+standard deviation, resulting in a divide by 0 error. `NA` will be returned. 
+2: There was 1 warning in `dplyr::mutate()`.
+ℹ In argument: `.nested.col = purrr::map(...)`.
+Caused by warning:
+! A correlation computation is required, but `estimate` is constant and has 0
+standard deviation, resulting in a divide by 0 error. `NA` will be returned. 
+
+Wrote reports/baseline_accuracy.csv
+# A tibble: 12 × 10
+   country  .model_id .model_desc .type    mae  mape  mase smape   rmse      rsq
+   <chr>        <int> <chr>       <chr>  <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl>
+ 1 ALL_COU…         1 ARIMA(0,0,… Test  19636.   Inf 0.670  63.1 32688.  4.51e-1
+ 2 ALL_COU…         2 XGBOOST     Test  17521.   Inf 0.597  54.2 27904.  4.70e-1
+ 3 EIRE             1 ARIMA(0,0,… Test    864.   Inf 0.724 110.   1203. NA      
+ 4 EIRE             2 XGBOOST     Test   1024.   Inf 0.858 138.   1493.  2.65e-2
+ 5 France           1 ARIMA(1,1,… Test    695.   Inf 0.791  89.0   871.  3.80e-2
+ 6 France           2 XGBOOST     Test   1969.   Inf 2.24  113.   3434.  2.49e-3
+ 7 Germany          1 ARIMA(0,0,… Test    754.   Inf 0.803 113.   1135.  9.85e-4
+ 8 Germany          2 XGBOOST     Test    957.   Inf 1.02  107.   1295.  5.38e-2
+ 9 Netherl…         1 ARIMA(0,0,… Test   1418.   Inf 0.798 183.   2752. NA      
+10 Netherl…         2 XGBOOST     Test   2390.   Inf 1.35  189.   4273.  9.47e-3
+11 United …         1 ARIMA(1,0,… Test  27364.   Inf 0.994  81.9 38483.  2.85e-1
+12 United …         2 XGBOOST     Test  16238.   Inf 0.590  53.6 28998.  3.83e-1
+null device 
+          1 
+Wrote reports/baseline_forecast.png
+Wrote artifacts/baseline_models.rds
+
+Done.
