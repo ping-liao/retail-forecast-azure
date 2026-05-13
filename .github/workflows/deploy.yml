@@ -23,7 +23,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -f app/Dockerfile \
+          docker build --no-cache -f app/Dockerfile \
             -t acrretailforecast.azurecr.io/retail-forecast-app:${{ github.sha }} \
             -t acrretailforecast.azurecr.io/retail-forecast-app:latest \
             .
