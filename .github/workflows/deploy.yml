@@ -1,0 +1,38 @@
+name: Build and Deploy Shiny Dashboard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'reports/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: acrretailforecast.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -f app/Dockerfile \
+            -t acrretailforecast.azurecr.io/retail-forecast-app:${{ github.sha }} \
+            -t acrretailforecast.azurecr.io/retail-forecast-app:latest \
+            .
+          docker push acrretailforecast.azurecr.io/retail-forecast-app:${{ github.sha }}
+          docker push acrretailforecast.azurecr.io/retail-forecast-app:latest
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: retail-forecast-app
+          images: acrretailforecast.azurecr.io/retail-forecast-app:${{ github.sha }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
