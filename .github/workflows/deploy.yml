@@ -33,8 +33,20 @@ jobs:
           docker push acrretailforecast.azurecr.io/retail-forecast-app:latest
 
       - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v3
+        uses: azure/login@v2
         with:
-          app-name: retail-forecast-app
-          images: acrretailforecast.azurecr.io/retail-forecast-app:${{ github.sha }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set container image
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az webapp config container set \
+              --name retail-forecast-app \
+              --resource-group rg-retail-forecast \
+              --container-image-name acrretailforecast.azurecr.io/retail-forecast-app:${{ github.sha }} \
+              --container-registry-url https://acrretailforecast.azurecr.io \
+              --container-registry-user ${{ secrets.ACR_USERNAME }} \
+              --container-registry-password ${{ secrets.ACR_PASSWORD }}
+            az webapp restart --name retail-forecast-app --resource-group rg-retail-forecast
