@@ -27,24 +27,20 @@ A working demonstration of how a BI/analytics engineer ships a forecasting produ
 > **Coming in later steps:** Prophet models, DALEX explainability tab, Azure ML model registry, renv.lock dependency pinning.
 
 ## Repo layout
-R/
-ingest.R # Download Rossmann data → Azure Blob (raw)
-prep.R # Clean + feature-engineer → curated Parquet
-train.R # Train ARIMA + XGBoost ensemble, save artifacts
-score.R # Generate 42-day forward forecasts
-app/
-app.R # Three-tab Shiny dashboard
-Dockerfile # rocker/shiny:4.4.2 based container
-azureml/
-Dockerfile # Training image (rocker/tidyverse:4.4.2)
-environment.yml # Azure ML environment definition
-dev/
-session.sh # Sets AZ_RG and AZ_STORAGE env vars
-infra/
-setup.sh # Azure resource provisioning
-teardown.sh # Full resource cleanup
-.github/workflows/
-deploy.yml # Build → push to ACR → deploy to App Service
+
+| Path | Purpose |
+|------|---------|
+| `R/ingest.R` | Download Rossmann data → Azure Blob (raw) |
+| `R/prep.R` | Clean + feature-engineer → curated Parquet |
+| `R/train.R` | Train ARIMA + XGBoost per country, save artifacts |
+| `R/score.R` | Generate 42-day forward forecasts |
+| `app/app.R` | Three-tab Shiny dashboard (Forecast, Backtest, Explain) |
+| `app/Dockerfile` | rocker/shiny:4.4.2 container for the dashboard |
+| `azureml/Dockerfile` | Training image (rocker/tidyverse:4.4.2) |
+| `dev/session.sh` | Sets AZ_RG and AZ_STORAGE env vars |
+| `infra/setup.sh` | Azure resource provisioning |
+| `infra/teardown.sh` | Full resource cleanup |
+| `.github/workflows/deploy.yml` | Build → push to ACR → deploy to App Service |
 
 ## Project status
 - [x] Cloud dev environment (Azure ML Compute Instance)
