@@ -6,8 +6,8 @@ library(plotly)
 library(readr)
 
 data_dir <- Sys.getenv("DATA_DIR", normalizePath(".."))
-fc  <- readRDS(file.path(data_dir, "artifacts", "scored_forecast.rds"))
-acc <- read_csv(file.path(data_dir, "reports", "baseline_accuracy.csv"),
+fc  <- readRDS(file.path(data_dir, "scored_forecast.rds"))
+acc <- read_csv(file.path(data_dir, "baseline_accuracy.csv"),
                 show_col_types = FALSE)
 
 countries <- sort(unique(fc$country))
