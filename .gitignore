@@ -58,3 +58,5 @@ rsconnect/
 
 # Trained model artifacts (large, reproducible)
 artifacts/
+!artifacts/scored_forecast.rds
+!reports/baseline_accuracy.csv
